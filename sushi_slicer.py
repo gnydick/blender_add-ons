@@ -10,7 +10,10 @@ bl_info = {
     'blender': (2, 91, 0),
     'location': 'F3: "sushi.."',
     'category': 'Object',
-    'description': 'Creates SLABS amount of equal height layers from an object. CUT for cutting the mesh. SEP for creating seperate objects.'
+    'description': '''Creates SLABS amount of equal
+                    height layers from an object.
+                    CUT for cutting the mesh.
+                    SEP for creating seperate objects.'''
 }
 
 
@@ -56,18 +59,15 @@ def cut_callback():
 
 def cut(idx, C, properties):
     O.mesh.select_all(action='SELECT')
-    O.mesh.bisect(plane_co=high_plane_co(idx, C, properties), \
-                  plane_no=(0, 0, 1), use_fill=False)
+    O.mesh.bisect(plane_co=high_plane_co(idx, C, properties), plane_no=(0, 0, 1), use_fill=False)
 
 
 def sep(idx, C, properties):
-    O.mesh.bisect(plane_co=low_plane_co(idx, C, properties), \
-                  plane_no=(0, 0, 1), use_fill=True, clear_inner=True)
+    O.mesh.bisect(plane_co=low_plane_co(idx, C, properties), plane_no=(0, 0, 1), use_fill=True, clear_inner=True)
     O.mesh.select_linked()
     O.mesh.duplicate()
 
-    O.mesh.bisect(plane_co=high_plane_co(idx, C, properties), plane_no=(0, 0, 1), use_fill=True, \
-                  clear_outer=True)
+    O.mesh.bisect(plane_co=high_plane_co(idx, C, properties), plane_no=(0, 0, 1), use_fill=True, clear_outer=True)
     O.mesh.select_linked()
     if idx < properties['slabs'] - 1:
         O.mesh.separate(type='SELECTED')
