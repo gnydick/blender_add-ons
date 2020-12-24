@@ -6,7 +6,7 @@ from bpy import utils as U
 bl_info = {
     'name': 'Sushi Slicer',
     'author': 'Gabe E. Nydick',
-    'version': (0, 4, 1),
+    'version': (0, 0, 1),
     'blender': (2, 91, 0),
     'location': 'F3: "sushi.."',
     'category': 'Object',
